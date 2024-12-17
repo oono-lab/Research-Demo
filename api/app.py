@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-CORS(app)
+
 
 # new_questionsリスト
 new_questions = [
