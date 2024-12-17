@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -102,5 +101,6 @@ def handle_message():
                     })
     return jsonify({"response": "他の問題でお願いします。", "correct": None, "explanation": None,"isFirstMessage": False})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+def handler(event, context):
+    from flask import request
+    return app(event, context)
