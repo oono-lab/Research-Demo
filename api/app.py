@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # new_questionsリスト
 new_questions = [
@@ -130,6 +130,3 @@ def handle_message():
                         "isFirstMessage": True
                     })
     return jsonify({"response": "他の問題でお願いします。", "correct": None, "explanation": None,"isFirstMessage": False})
-
-if __name__ == "__main__":
-    app.run(debug=True)
