@@ -88,7 +88,7 @@ def handle_message():
     user_message = data.get("message", "")
     step_index = data.get("stepIndex", 0)
     awaitingAnswer = data.get("awaitingAnswer", False)
-
+    index_data = data.get("index_data", 0)
     if (user_message in new_questions) and awaitingAnswer==False:
         index = new_questions.index(user_message)
         cleaned_text = remove_newlines_and_spaces(GPT_OUTPUT_Sentece[index])
@@ -98,7 +98,8 @@ def handle_message():
             "response": step_and_question_list[0],
             "correct": None,
             "explanation": None,
-            "isFirstMessage": True
+            "isFirstMessage": True,
+            "index_data": index
         })
     if awaitingAnswer:
         for i, question in enumerate(new_questions):
@@ -113,20 +114,23 @@ def handle_message():
                             "response": "正解です！",
                             "correct": True,
                             "explanation": step_and_question_list[step_index+1],
-                            "isFirstMessage": True
+                            "isFirstMessage": True,
+                            "index_data": index_data
                         })
                     else:
                         return jsonify({
                             "response": "これで全問正解です！",
                             "correct": True,
                             "explanation":" お疲れさまでした！",
-                            "isFirstMessage": True
+                            "isFirstMessage": True,
+                            "index_data": index_data
                         })
                 else:
                     return jsonify({
                         "response": "不正解です。",
                         "correct": False,
                         "explanation": explanation_list[step_index],
-                        "isFirstMessage": True
+                        "isFirstMessage": True,
+                        "index_data": index_data
                     })
     return jsonify({"response": "他の問題でお願いします。", "correct": None, "explanation": None,"isFirstMessage": False})
