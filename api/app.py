@@ -103,7 +103,7 @@ def handle_message():
         })
     if awaitingAnswer:
         for i, question in enumerate(new_questions):
-            cleaned_text = remove_newlines_and_spaces(GPT_OUTPUT_Sentece[index_data])
+            cleaned_text = remove_newlines_and_spaces(GPT_OUTPUT_Sentece[index])
             steps_dict = extract_steps_and_answers(cleaned_text)
             step_and_question_list, correct_answer_list, explanation_list = extract_to_lists(steps_dict)
 
