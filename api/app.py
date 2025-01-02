@@ -133,4 +133,4 @@ def handle_message():
                         "isFirstMessage": True,
                         "index_data": index_data
                     })
-    return jsonify({"response": "他の問題でお願いします。", "correct": None, "explanation": None,"isFirstMessage": False})
+    return jsonify({"response": "他の問題でお願いします。", "correct": None, "explanation": None,"isFirstMessage": False,"index_data": index_data})
